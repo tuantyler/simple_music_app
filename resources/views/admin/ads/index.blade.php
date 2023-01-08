@@ -56,7 +56,6 @@
                     </td>
                    
                     <td>
-                        <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
