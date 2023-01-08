@@ -56,6 +56,8 @@ class AdminController extends Controller
         $entity["idAlbum"] = (boolval($entity["idAlbum"])) ? $entity["idAlbum"] : null;
         $entity["idTheLoai"] = (isset($entity["idTheLoai"])) ? implode(",",$entity["idTheLoai"]) : null;
         $entity["idPayList"] = (isset($entity["idPayList"])) ? implode(",",$entity["idPayList"]) : null;
+        
+        DB::table('baihat')->insert($entity);
     }
 
     public function genres(){

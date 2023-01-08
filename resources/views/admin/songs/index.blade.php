@@ -32,7 +32,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>STT</th>
@@ -87,7 +87,23 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
+    <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/adminlte/plugins/jszip/jszip.min.js"></script>
+    <script src="/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
     <script>
       $('.my-select').selectpicker();
+      $('#example2').DataTable({
+        "searching": true,
+      });
     </script>
 @endsection
