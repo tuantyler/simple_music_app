@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('songs')}}" class="{{ Request::routeIs('songs') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý bài hát
@@ -44,7 +44,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('genres')}}" class="{{ Request::routeIs('genres') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý thể loại
@@ -52,7 +52,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('playlists')}}" class="{{ Request::routeIs('playlists') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý playlist
@@ -60,7 +60,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('albums')}}" class="{{ Request::routeIs('albums') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý album
@@ -69,7 +69,7 @@
               </li>
     
               <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('topics')}}" class="{{ Request::routeIs('topics') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý chủ đề
@@ -77,7 +77,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/kanban.html" class="nav-link">
+                <a href="{{route('ads')}}" class="{{ Request::routeIs('ads') ? 'nav-link active' : 'nav-link' }}">
                   <i class="nav-icon fas fa-columns"></i>
                   <p>
                     Quản lý quảng cáo

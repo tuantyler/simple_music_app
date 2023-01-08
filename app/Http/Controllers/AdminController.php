@@ -36,4 +36,26 @@ class AdminController extends Controller
         ->get();
         return view("admin.songs.index" , compact("songs"));
     }
+
+    public function genres(){
+        $genres = DB::table('theloai')->get();
+        return view("admin.genres.index" , compact("genres"));
+    }
+    public function playlists(){
+        $playlists = DB::table("paylist")->get();
+        return view("admin.playlists.index" , compact("playlists"));
+    }
+    public function albums(){
+        $albums = DB::table("idalbum")->get();
+        return view("admin.albums.index" , compact("albums"));
+    }
+    public function topics(){
+        $topics = DB::table("idchude")->get();
+        return view("admin.topics.index" , compact("topics"));
+    }
+    public function ads(){
+        $ads = DB::table("quangcao")->get();
+        return view("admin.ads.index" , compact("ads"));
+    }
+
 }

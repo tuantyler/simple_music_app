@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Quản lý bài hát</h1>
+            <h1 class="m-0">Quản lý playlist</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Quản lý bài hát</li>
+              <li class="breadcrumb-item active">Quản lý playlist</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,33 +36,23 @@
                 <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Tên bài hát</th>
-                  <th>Hình bài hát</th>
-                  <th>Ca sĩ</th>
-                  <th>Nghe</th>
-                  <th>Lượt thích</th>
-                  <th>Album</th>
-                  <th>Thể loại</th>
-                  <th>Playlist</th>
+                  <th>Tên playlist</th>
+                  <th>Hình nền</th>
+                  <th>Hình icon</th>
                   <th>Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($songs as $index => $song)
+                @foreach ($playlists as $index => $playlist)
                 <tr>
                     <td>{{$index + 1}}</td>
-                    <td>{{$song->TenBaiHat}}</td>
+                    <td>{{$playlist->Ten}}</td>
                     <td>
-                        <img src="{{$song->HinhBaiHat}}" height="80" width="80"/>
+                        <img src="{{$playlist->HinhNen}}" height="80" width="80"/>
                     </td>
-                    <td>{{$song->Casi}}</td>
-                    <td>   
-                        <div class="audio-player" data-src="{{$song->LinkBaiHat}}"></div>
+                    <td>
+                        <img src="{{$playlist->HinhIcon}}" height="80" width="80"/>
                     </td>
-                    <td>{{$song->LuotThich}}</td>
-                    <td>{{$song->TenAlbum ?? 'Không có'}}</td>
-                    <td>{{$song->TenTheLoai ?? 'Không có'}}</td>    
-                    <td>{{$song->Ten ?? 'Không có'}}</td>  
                     <td>
                         <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
