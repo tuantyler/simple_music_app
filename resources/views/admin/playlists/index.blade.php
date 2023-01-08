@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <button class="btn btn-success">Thêm bài hát mới</button>
+                @include('admin.playlists.addNewPlaylist')
               </h3>
             </div>
             <!-- /.card-header -->
@@ -54,7 +54,15 @@
                         <img src="{{$playlist->HinhIcon}}" height="80" width="80"/>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger"
+                        onclick="javascript:(function() { 
+                          var ask = window.confirm('Bạn có chắc rằng muốn xóa playlist: {{$playlist->Ten}}?');
+                          if (ask) {
+                            window.location.href = '{{route('deletePlaylist' , ['id' => $playlist->idPayList])}}';
+                          };
+                        })()"
+                        
+                        ><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
                 @endforeach

@@ -25,12 +25,23 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/genres' , [admin::class , "genres"])->name("genres");
     Route::post('/genres' , [admin::class , "addGenre"])->name("addGenre");
-
+    Route::get('/del_genre/{id}' , [admin::class , "deleteGenre"])->name("deleteGenre");
 
     Route::get('/playlists' , [admin::class , "playlists"])->name("playlists");
+    Route::post('/playlists' , [admin::class , "addPlaylist"])->name("addPlaylist");
+    Route::get('/del_playlist/{id}' , [admin::class , "deletePlaylist"])->name("deletePlaylist");
+
     Route::get('/albums' , [admin::class, "albums"])->name("albums");
+    Route::post('/albums' , [admin::class , "addAlbum"])->name("addAlbum");
+    Route::get('/del_albums/{id}' , [admin::class , "deleteAlbum"])->name("deleteAlbum");
+
     Route::get('/topics' , [admin::class , "topics"])->name("topics");
+    Route::post('/topics' , [admin::class , "addTopic"])->name("addTopic");
+    Route::get('/del_topic/{id}' , [admin::class , "deleteTopic"])->name("deleteTopic");
+
     Route::get('/ads' , [admin::class , "ads"])->name("ads");
+    Route::post('/ads' , [admin::class , "addAd"])->name("addAd");
+    Route::get('/del_ad/{id}' , [admin::class , "deleteAd"])->name("deleteAd");
 
 
     Route::get('logout', function () {

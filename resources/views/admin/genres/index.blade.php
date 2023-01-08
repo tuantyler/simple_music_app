@@ -51,10 +51,17 @@
                         <img src="{{$genre->HinhTheLoai}}" height="80" width="80" />
                     </td>
                     <td>
-                      {{$genre->TenChuDe}}
+                      {{$genre->TenChuDe ?? 'Không có'}}
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger"
+                        onclick="javascript:(function() { 
+                          var ask = window.confirm('Bạn có chắc rằng muốn xóa thể loại này không: {{$genre->TenTheLoai}}?');
+                          if (ask) {
+                            window.location.href = '{{route('deleteGenre' , ['id' => $genre->idTheLoai])}}';
+                          };
+                        })()"
+                        ><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
                 @endforeach

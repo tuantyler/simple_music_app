@@ -69,6 +69,7 @@ class AdminController extends Controller
         $entity["idPayList"] = (isset($entity["idPayList"])) ? implode(",",$entity["idPayList"]) : null;
         
         DB::table('baihat')->insert($entity);
+        return redirect()->back();
     }
 
     public function deleteSong($id){
@@ -93,21 +94,98 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function deleteGenre($id) {
+        DB::table("theloai")->where("idTheLoai" , $id)->delete();
+        return redirect()->back();
+    }
+
     public function playlists(){
         $playlists = DB::table("paylist")->get();
         return view("admin.playlists.index" , compact("playlists"));
     }
+
+    public function addPlaylist(Request $res){
+        $entity = $res->except("_token");
+        $uniqid = uniqid();
+        $HinhNen_fileName = $uniqid . "-" . $res->HinhNen->getClientOriginalName();
+        $HinhIcon_fileName = $uniqid . "-" . $res->HinhIcon->getClientOriginalName();
+        $res->HinhNen->move(public_path("HinhNen"), $HinhNen_fileName);
+        $res->HinhIcon->move(public_path("HinhIcon"), $HinhIcon_fileName);
+        $entity["HinhNen"] = "/HinhNen/" . $HinhNen_fileName;
+        $entity["HinhIcon"] = "/HinhIcon/" . $HinhIcon_fileName;
+        DB::table('paylist')->insert($entity);
+        return redirect()->back();
+    }
+
+    public function deletePlaylist($id) {
+        DB::table('paylist')->where("idPayList",$id)->delete();
+        return redirect()->back();
+    }
+
+
     public function albums(){
         $albums = DB::table("idalbum")->get();
         return view("admin.albums.index" , compact("albums"));
     }
+    public function addAlbum(Request $res){
+        $entity = $res->except("_token");
+        $uniqid = uniqid();
+        $HinhAlbum_fileName = $uniqid . "-" . $res->HinhAlbum->getClientOriginalName();
+        $res->HinhAlbum->move(public_path("HinhAlbum"), $HinhAlbum_fileName);
+        $entity["HinhAlbum"] = "/HinhAlbum/" . $HinhAlbum_fileName;
+        DB::table('idalbum')->insert($entity);
+        return redirect()->back();
+    }
+    public function deleteAlbum($id) {
+        DB::table("idalbum")->where("idAlbum" , $id)->delete();
+        DB::table("baihat")->where("idAlbum" , $id)->delete();
+        return redirect()->back();
+    }
+
+
+
     public function topics(){
         $topics = DB::table("idchude")->get();
         return view("admin.topics.index" , compact("topics"));
     }
+    public function addTopic(Request $res){
+        $entity = $res->except("_token");
+        $uniqid = uniqid();
+        $HinhChuDe_fileName = $uniqid . "-" . $res->HinhChuDe->getClientOriginalName();
+        $res->HinhChuDe->move(public_path("HinhChuDe"), $HinhChuDe_fileName);
+        $entity["HinhChuDe"] = "/HinhChuDe/" . $HinhChuDe_fileName;
+        DB::table('idchude')->insert($entity);
+        return redirect()->back();
+    }
+    public function deleteTopic($id) {
+        DB::table("idchude")->where("idChude" , $id)->delete();
+        return redirect()->back();
+    }
+
     public function ads(){
         $ads = DB::table("quangcao")->get();
-        return view("admin.ads.index" , compact("ads"));
+        $songEntities = DB::table("baihat")->get(["idBaiHat" , "TenBaiHat"]);
+        return view("admin.ads.index" , compact("ads" , "songEntities"));
     }
+    public function addAd(Request $res){
+        $entity = $res->except("_token");
+        $uniqid = uniqid();
+
+        $hinhanh_fileName = $uniqid . "-" . $res->hinhanh->getClientOriginalName();
+        $res->hinhanh->move(public_path("hinhanh"), $hinhanh_fileName);
+        $entity["hinhanh"] = "/hinhanh/" . $hinhanh_fileName;
+
+        $banner_fileName = $uniqid . "-" . $res->banner->getClientOriginalName();
+        $res->banner->move(public_path("banner"), $banner_fileName);
+        $entity["banner"] = "/banner/" . $banner_fileName;
+
+        DB::table('quangcao')->insert($entity);
+        return redirect()->back();
+    }
+    public function deleteAd($id) {
+        DB::table("quangcao")->where("id" , $id)->delete();
+        return redirect()->back();
+    }
+
 
 }

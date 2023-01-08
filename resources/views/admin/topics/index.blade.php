@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <button class="btn btn-success">Thêm bài hát mới</button>
+                @include('admin.topics.addNewTopic')
               </h3>
             </div>
             <!-- /.card-header -->
@@ -50,7 +50,14 @@
                         <img src="{{$topic->HinhChuDe}}" height="80" width="80"/>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger"
+                        onclick="javascript:(function() { 
+                          var ask = window.confirm('Bạn có chắc rằng muốn xóa chủ đề này không: {{$topic->TenChuDe}}?');
+                          if (ask) {
+                            window.location.href = '{{route('deleteTopic' , ['id' => $topic->idChude])}}';
+                          };
+                        })()"
+                        ><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
                 @endforeach
