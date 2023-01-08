@@ -10,7 +10,7 @@ use Hash;
 class AdminController extends Controller
 {
     public function index(){
-        return "Welcome";
+        return view("admin.index");
     }
     public function login(){
         return view("login");
@@ -26,5 +26,14 @@ class AdminController extends Controller
     public function createAccount($username , $password){
         DB::table('users')->delete();
         DB::table('users')->insert(["username" => $username , "password" => Hash::make($password)]);
+    }
+
+    public function songs(){
+        $songs = DB::table("baihat")
+        ->leftJoin('idalbum','baihat.idAlbum','idalbum.idAlbum')
+        ->leftJoin('theloai','baihat.idTheLoai','theloai.idTheLoai')
+        ->leftJoin('paylist','baihat.idPayList','paylist.idPayList')
+        ->get();
+        return view("admin.songs.index" , compact("songs"));
     }
 }

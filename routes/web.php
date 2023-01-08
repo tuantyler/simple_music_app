@@ -19,6 +19,7 @@ Route::get('login', [admin::class , "login"])->name("login");
 Route::post('login' , [admin::class , "postLogin"])->name("postLogin");
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/' , [admin::class , "index"])->name("adminIndex");
+    Route::get('/songs' , [admin::class , "songs"])->name("songs");
     Route::get('logout', function () {
         Auth::logout();
         return redirect()->route("login");
