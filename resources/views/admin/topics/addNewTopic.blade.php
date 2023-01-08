@@ -1,7 +1,7 @@
 <!-- Button trigger modal -->
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-    Thêm playlist mới
+    Thêm chủ đề mới
   </button>
   
   <!-- Modal -->
@@ -9,7 +9,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thêm topic mới</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Thêm chủ đề mới</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
