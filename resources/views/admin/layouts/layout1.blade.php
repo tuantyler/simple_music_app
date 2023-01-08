@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/adminlte/plugins/summernote/summernote-bs4.min.css">
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -106,7 +108,6 @@
 <script src="/adminlte/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
-
 
 @yield('extras')
 

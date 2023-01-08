@@ -20,6 +20,7 @@ Route::post('login' , [admin::class , "postLogin"])->name("postLogin");
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/' , [admin::class , "index"])->name("adminIndex");
     Route::get('/songs' , [admin::class , "songs"])->name("songs");
+    Route::post('/songs' , [admin::class , "addSong"])->name("addSong");
     Route::get('/genres' , [admin::class , "genres"])->name("genres");
     Route::get('/playlists' , [admin::class , "playlists"])->name("playlists");
     Route::get('/albums' , [admin::class, "albums"])->name("albums");

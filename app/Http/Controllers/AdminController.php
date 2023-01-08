@@ -34,7 +34,28 @@ class AdminController extends Controller
         ->leftJoin('theloai','baihat.idTheLoai','theloai.idTheLoai')
         ->leftJoin('paylist','baihat.idPayList','paylist.idPayList')
         ->get();
-        return view("admin.songs.index" , compact("songs"));
+
+
+        $genreEntities = DB::table("theloai")->get(["idTheLoai" , "TenTheLoai"]);
+        $albumEntities = DB::table("idalbum")->get(["idAlbum" , "TenAlbum"]);
+        $playlistEntities = DB::table("paylist")->get(["idPayList" , "Ten"]);
+        return view("admin.songs.index" , compact("songs" , "genreEntities" , "albumEntities" , "playlistEntities"));
+    }
+
+    public function addSong(Request $res){
+        $uniqid = uniqid();
+        $HinhBaiHat_fileName = $uniqid . "-" . $res->HinhBaiHat->getClientOriginalName();
+        $LinkBaiHat_fileName = $uniqid . "-" . $res->LinkBaiHat->getClientOriginalName();
+
+        $res->HinhBaiHat->move(public_path("HinhBaiHat"), $HinhBaiHat_fileName);
+        $res->LinkBaiHat->move(public_path("LinkBaiHat"), $LinkBaiHat_fileName);
+
+        $entity = $res->except("_token");
+        $entity["HinhBaiHat"] = "HinhBaiHat/" . $HinhBaiHat_fileName;
+        $entity["LinkBaiHat"] = "LinkBaiHat/" . $LinkBaiHat_fileName;
+        $entity["idAlbum"] = (boolval($entity["idAlbum"])) ? $entity["idAlbum"] : null;
+        $entity["idTheLoai"] = (isset($entity["idTheLoai"])) ? implode(",",$entity["idTheLoai"]) : null;
+        $entity["idPayList"] = (isset($entity["idPayList"])) ? implode(",",$entity["idPayList"]) : null;
     }
 
     public function genres(){

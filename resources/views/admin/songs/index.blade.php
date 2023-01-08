@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <button class="btn btn-success">Thêm bài hát mới</button>
+                @include('admin.songs.addNewSong') 
               </h3>
             </div>
             <!-- /.card-header -->
@@ -82,4 +82,12 @@
 
 @section('extras')
     @include('admin.layouts.musicplayer')
+    
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <script>
+      $('.my-select').selectpicker();
+    </script>
 @endsection
