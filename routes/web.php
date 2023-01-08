@@ -24,6 +24,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/del_song/{id}' , [admin::class , "deleteSong"])->name("deleteSong");
 
     Route::get('/genres' , [admin::class , "genres"])->name("genres");
+    Route::post('/genres' , [admin::class , "addGenre"])->name("addGenre");
+
+
     Route::get('/playlists' , [admin::class , "playlists"])->name("playlists");
     Route::get('/albums' , [admin::class, "albums"])->name("albums");
     Route::get('/topics' , [admin::class , "topics"])->name("topics");

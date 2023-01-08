@@ -77,9 +77,22 @@ class AdminController extends Controller
     }
 
     public function genres(){
-        $genres = DB::table('theloai')->get();
-        return view("admin.genres.index" , compact("genres"));
+        $genres = DB::table('theloai')->leftJoin('idchude','theloai.idChude','idchude.idChude')->get();
+        $topicEntities = DB::table('idchude')->get(["idChude" , "TenChuDe"]);
+        return view("admin.genres.index" , compact("genres" , "topicEntities"));
     }
+
+    public function addGenre(Request $res){
+        $entity = $res->except("_token");
+        $uniqid = uniqid();
+        $HinhTheLoai_fileName = $uniqid . "-" . $res->HinhTheLoai->getClientOriginalName();
+        $res->HinhTheLoai->move(public_path("HinhTheLoai"), $HinhTheLoai_fileName);
+        $entity["HinhTheLoai"] = "/HinhTheLoai/" . $HinhTheLoai_fileName;
+        $entity["idChude"] = (boolval($entity["idChude"])) ? $entity["idChude"] : null;
+        DB::table('theloai')->insert($entity);
+        return redirect()->back();
+    }
+
     public function playlists(){
         $playlists = DB::table("paylist")->get();
         return view("admin.playlists.index" , compact("playlists"));

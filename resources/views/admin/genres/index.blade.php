@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <button class="btn btn-success">Thêm bài hát mới</button>
+                @include('admin.genres.addNewGenre')
               </h3>
             </div>
             <!-- /.card-header -->
@@ -38,6 +38,7 @@
                   <th>STT</th>
                   <th>Tên thể loại</th>
                   <th>Hình thể loại</th>
+                  <th>Chủ đề</th>
                   <th>Hành động</th>
                 </tr>
                 </thead>
@@ -48,6 +49,9 @@
                     <td>{{$genre->TenTheLoai}}</td>
                     <td>
                         <img src="{{$genre->HinhTheLoai}}" height="80" width="80" />
+                    </td>
+                    <td>
+                      {{$genre->TenChuDe}}
                     </td>
                     <td>
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
@@ -67,4 +71,10 @@
 
 @section('extras')
     @include('admin.layouts.musicplayer')
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script>
+        $('.my-select').selectpicker();
+    </script>
 @endsection
