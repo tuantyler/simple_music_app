@@ -43,7 +43,6 @@
                   <th>Lượt thích</th>
                   <th>Album</th>
                   <th>Thể loại</th>
-                  <th>Playlist</th>
                   <th>Hành động</th>
                 </tr>
                 </thead>
@@ -61,11 +60,15 @@
                     </td>
                     <td>{{$song->LuotThich}}</td>
                     <td>{{$song->TenAlbum ?? 'Không có'}}</td>
-                    <td>{{$song->TenTheLoai ?? 'Không có'}}</td>    
-                    <td>{{$song->Ten ?? 'Không có'}}</td>  
+                    <td>{{$song->genre ?? 'Không có'}}</td>    
                     <td>
-                        <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="javascript:(function() { 
+                          var ask = window.confirm('Bạn có chắc rằng muốn xóa bài hát: {{$song->TenBaiHat}} được thể hiện bởi {{$song->Casi}}?');
+                          if (ask) {
+                            window.location.href = '{{route('deleteSong' , ['id' => $song->idBaiHat])}}';
+                          };
+                        })()"
+                        ><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
                 @endforeach

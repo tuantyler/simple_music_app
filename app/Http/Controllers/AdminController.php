@@ -29,12 +29,23 @@ class AdminController extends Controller
     }
 
     public function songs(){
-        $songs = DB::table("baihat")
-        ->leftJoin('idalbum','baihat.idAlbum','idalbum.idAlbum')
-        ->leftJoin('theloai','baihat.idTheLoai','theloai.idTheLoai')
-        ->leftJoin('paylist','baihat.idPayList','paylist.idPayList')
-        ->get();
+        // $songs = DB::table("baihat")
+        // ->leftJoin('idalbum','baihat.idAlbum','idalbum.idAlbum')
+        // ->innerjoin('theloai','theloai.idTheLoai','theloai.idTheLoai')
+        // ->innerjoin('paylist','baihat.idPayList','paylist.idPayList')
+        // ->get();
 
+        // dd($songs);
+
+        //$songs = DB::select(DB::raw("SELECT * FROM baihat as t1 LEFT JOIN theloai as t2 ON find_in_set(t2.idTheLoai, t1.idTheLoai)"));
+        \DB::statement("SET SQL_MODE=''");
+        $songs = DB::select("
+            select *,
+            group_concat(genres.TenTheLoai) as genre
+            from baihat songs left join idalbum albums on albums.idAlbum = songs.idAlbum
+            left join theloai genres on find_in_set(genres.idTheLoai,songs.idTheLoai)
+            group by songs.idBaiHat;
+        ");
 
         $genreEntities = DB::table("theloai")->get(["idTheLoai" , "TenTheLoai"]);
         $albumEntities = DB::table("idalbum")->get(["idAlbum" , "TenAlbum"]);
@@ -51,13 +62,18 @@ class AdminController extends Controller
         $res->LinkBaiHat->move(public_path("LinkBaiHat"), $LinkBaiHat_fileName);
 
         $entity = $res->except("_token");
-        $entity["HinhBaiHat"] = "HinhBaiHat/" . $HinhBaiHat_fileName;
-        $entity["LinkBaiHat"] = "LinkBaiHat/" . $LinkBaiHat_fileName;
+        $entity["HinhBaiHat"] = "/HinhBaiHat/" . $HinhBaiHat_fileName;
+        $entity["LinkBaiHat"] = "/LinkBaiHat/" . $LinkBaiHat_fileName;
         $entity["idAlbum"] = (boolval($entity["idAlbum"])) ? $entity["idAlbum"] : null;
         $entity["idTheLoai"] = (isset($entity["idTheLoai"])) ? implode(",",$entity["idTheLoai"]) : null;
         $entity["idPayList"] = (isset($entity["idPayList"])) ? implode(",",$entity["idPayList"]) : null;
         
         DB::table('baihat')->insert($entity);
+    }
+
+    public function deleteSong($id){
+        DB::table("baihat")->where("idBaiHat" , $id)->delete();
+        return redirect()->back();
     }
 
     public function genres(){
