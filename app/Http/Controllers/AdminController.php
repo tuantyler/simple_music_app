@@ -10,7 +10,7 @@ use Hash;
 class AdminController extends Controller
 {
     public function index(){
-        return view("admin.index");
+        return redirect()->route("songs");
     }
     public function login(){
         return view("login");

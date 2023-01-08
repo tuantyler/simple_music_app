@@ -56,7 +56,16 @@
                     </td>
                    
                     <td>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger"
+                        onclick="javascript:(function() { 
+                          var ask = window.confirm('Bạn có chắc rằng muốn xóa quảng cáo này?');
+                          if (ask) {
+                            window.location.href = '{{route('deleteAd' , ['id' => $ad->id])}}';
+                          };
+                        })()"
+                        
+                        
+                        ><i class="fas fa-trash"></i></button>
                     </td>  
                 </tr>
                 @endforeach
