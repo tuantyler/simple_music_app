@@ -263,7 +263,7 @@ body {
   
     <div class="list">
       @foreach ($ads as $index => $ad)
-      <div class="item" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{$ad->banner}}'); background-position: center;" onclick="playTrack({{$index}})">
+      <div class="item" style="background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('{{$ad->banner}}'); background-position: center;" onclick="playTrack({{$index}})">
         <img src="{{$ad->hinhanh}}"style="height:100px ; width: 100px; object-fit: cover;"/>
         <div class="play">
           <span class="fa fa-play"></span>

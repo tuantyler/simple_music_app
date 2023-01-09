@@ -130,7 +130,7 @@
             </td>
             <td class="w-[4rem]">
               <a href="#" class="flex ml-[0.5rem] w-max">
-                <img src="https://i.imgur.com/ApxXsDK.jpeg" class="w-auto object-cover w-[2.5rem] h-[2.5rem] rounded-md" alt="">
+                <img src="{{$album->HinhBaiHat}}" class="w-auto object-cover w-[2.5rem] h-[2.5rem] rounded-md" alt="">
               </a>
             </td>
             <td class="font-medium">
@@ -160,7 +160,11 @@
               </div>
             </td>
 
-            <td class="hidden sm:table-cell">
+            <td class="hidden sm:table-cell"
+            onclick="javascript:(function() { 
+              window.location.href = '{{route('add-like' , ['id' => $album->idBaiHat])}}';
+            })()"
+            >
               <div class="duration-300 hover:text-primary icon cursor-pointer">
                 <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -182,7 +186,7 @@
       </table>
     </div>
   </div>
-  <div class="flexh-shrink-0 h-[8.5rem] flex items-center px-[1.25rem]">
+  {{-- <div class="flexh-shrink-0 h-[8.5rem] flex items-center px-[1.25rem]">
     <a href="#" class="hidden sm:inline flex-shrink-0">
       <img src="https://i.imgur.com/ApxXsDK.jpeg" class="object-cover w-[6rem] h-[6rem] rounded-lg shadow-md" alt="">
     </a>
@@ -263,5 +267,5 @@
       </div>
     </div>
 
-  </div>
+  </div> --}}
 @endsection
