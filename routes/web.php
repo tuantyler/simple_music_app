@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController as admin;
-
+use App\Http\Controllers\UserController as user;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,11 +48,19 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Auth::logout();
         return redirect()->route("login");
     })->name("logout");
+
 });
 
+
+Route::get('/get-playlist-json/{id}' , [user::class , "getPlaylistAsJson"])->name("get-playlist-as-json");
+Route::get('/get-album-as-json/{id}' , [user::class , "getAlbumAsJson"])->name("get-album-as-json");
+Route::get('/get-ads-as-json/{id}' , [user::class , "getAdsAsJson"])->name("get-ads-as-json");
+Route::get('/addlike/{id}' , [user::class , "addLike"])->name("add-like");
 
 // Route::get('create_account/{username}/{password}', [admin::class , "createAccount"]);
 
-Route::get('/', function(){
-    return "This is homepage";
-});
+Route::get('/', [user::class , "index"])->name("homepage");
+Route::get('/explorer' , [user::class , "alls"])->name("explorer");
+Route::get('/albums' , [user::class , "albums"])->name("albumsx");
+Route::get('/details/album/{id}' , [user::class , "Detailalbum"])->name("Detailalbum");
+Route::get('/details/playlist/{id}' , [user::class , "Detailplaylist"])->name("Detailplaylist");
