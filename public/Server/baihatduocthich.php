@@ -9,9 +9,9 @@ while ($row = mysqli_fetch_assoc($dataalbum)) {
     array_push($arraycasi, [
         "Idbaihat" => $row["idBaiHat"],
         "Tenbaihat" => $row["TenBaiHat"],
-        "Hinhbaihat" => $row["HinhBaiHat"],
+        "Hinhbaihat" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhBaiHat"],
         "Casi" => $row["Casi"],
-        "Linkbaihat" => $row["LinkBaiHat"],
+        "Linkbaihat" => 'http://'. $_SERVER['HTTP_HOST'] . $row["LinkBaiHat"],
         "Luotthich" => $row["LuotThich"],
     ]);
 }

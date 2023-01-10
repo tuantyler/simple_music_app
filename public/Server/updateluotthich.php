@@ -4,7 +4,7 @@
 	$luotthich = $_POST['luotthich'];
 	$idbaihat = $_POST['idbaihat'];
 
-	$query = "SELECT LuotThich FROM baihat WHERE idBaiHat = 'idbaihat' ";
+	$query = "SELECT LuotThich FROM baihat WHERE idBaiHat = " . $idbaihat;
 	$dataluotthich = mysqli_query($con,$query);
 	$row = mysqli_fetch_assoc($dataluotthich);
 	$tongluotthich = $row['LuotThich'];

@@ -13,7 +13,7 @@ while ($row = mysqli_fetch_assoc($datatheloai)) {
         "idTheLoai" => $row["idTheLoai"],
         "idKeyChuDe" => $row["IdChuDe"],
         "TenTheLoai" => $row["TenTheLoai"],
-        "HinhTheLoai" => $row["HinhTheLoai"],
+        "HinhTheLoai" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhTheLoai"],
     ]);
 }
 

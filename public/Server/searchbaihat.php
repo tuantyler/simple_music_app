@@ -2,6 +2,7 @@
 require "connect.php";
 
 if (isset($_POST["tukhoa"])) {
+    $mangcakhuc = [];
     $tukhoa = $_POST["tukhoa"];
     $query = "SELECT * FROM baihat WHERE lower(TenBaiHat) LIKE '%$tukhoa%'";
     $data = mysqli_query($con, $query);
@@ -9,9 +10,9 @@ if (isset($_POST["tukhoa"])) {
         array_push($mangcakhuc, [
             "Idbaihat" => $row["idBaiHat"],
             "Tenbaihat" => $row["TenBaiHat"],
-            "Hinhbaihat" => $row["HinhBaiHat"],
+            "Hinhbaihat" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhBaiHat"],
             "Casi" => $row["Casi"],
-            "Linkbaihat" => $row["LinkBaiHat"],
+            "Linkbaihat" => 'http://'. $_SERVER['HTTP_HOST'] . $row["LinkBaiHat"],
             "Luotthich" => $row["LuotThich"],
         ]);
     }

@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_assoc($data)) {
         "IdAlbum" => $row["idAlbum"],
         "TenAlbum" => $row["TenAlbum"],
         "TenCaSiAlbum" => $row["TenCasiAlbum"],
-        "HinhAlBum" => $row["HinhAlbum"],
+        "HinhAlBum" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhAlbum"],
     ]);
 }
 echo json_encode($arrayalbum);

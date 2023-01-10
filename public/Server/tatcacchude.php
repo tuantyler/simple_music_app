@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_assoc($data)) {
         $arraychude, array(
 			"idChuDe" => $row["idChude"],
 			"TenChuDe" => $row["TenChuDe"],
-			"HinhChuDe" => $row["HinhChuDe"]
+			"HinhChuDe" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhChuDe"]
 		)
     );
 }

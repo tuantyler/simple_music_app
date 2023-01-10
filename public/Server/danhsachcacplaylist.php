@@ -9,8 +9,8 @@ while ($row = mysqli_fetch_assoc($data)) {
     array_push($arrayplaylist, [
         "idPaylist" => $row["idPayList"],
         "Ten" => $row["Ten"],
-        "HinhNen" => $row["HinhNen"],
-        "HinhIcon" => $row["HinhIcon"],
+        "HinhNen" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhNen"],
+        "HinhIcon" => 'http://'. $_SERVER['HTTP_HOST'] . $row["HinhIcon"],
     ]);
 }
 echo json_encode($arrayplaylist);
