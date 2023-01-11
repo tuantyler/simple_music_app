@@ -1,3 +1,36 @@
+<style>
+  #searchResult {
+    display: none;
+  }
+</style>
+
+<script>
+  var searchedData;
+  function searching(evt){
+    $.ajax({
+          url: "{{route('searching', '')}}"+"/"+evt.value,
+          dataType: "json",
+      })
+      .done(function( data ) {
+        searchedData = data;
+        document.getElementById('searchResult').style.display = "block";
+        document.getElementById('searchedTitle').innerHTML = data[0].TenBaiHat;
+        document.getElementById('searchedImage').src = data[0].HinhBaiHat;
+        document.getElementById('searchedArtist').innerHTML = data[0].Casi;
+
+      });
+  }
+
+  function playSearched(){
+    playlistTracks = [];
+    playlistTracks.push(searchedData[0]);
+    playTrack(0);
+  }
+</script>
+
+
+
+
 <aside class="absolute z-10 w-3/4 sm:w-1/2 -translate-x-full lg:translate-x-0 sidebar-left lg:relative lg:w-[18rem] flex-shrink-0 h-full py-[1.5rem] px-[1.25rem] bg-black backdrop-blur-xl bg-opacity-5">
     <div class="hidden lg:block toggle-btn icon cursor-pointer duration-300 hover:scale-110 p-[0.3rem] toggle-btn absolute w-[1.5rem] h-[1.5rem] bg-black bg-opacity-60 backdrop-blur-2xl rounded-full -right-0 top-0 translate-x-1/2 translate-y-[15.25rem]">
       <svg stroke="#fff" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +63,7 @@
       </header>
   
       <div class="relative mt-[1.5rem] rounded-md bg-black bg-opacity-40 overflow-hidden text-alt text-opacity-60 focus-within:text-opacity-80">
-        <input id="search" type="text" class="closed-hide md:block px-[2.5rem] duration-300 w-full outline-none bg-transparent h-[2.5rem] text-[13px] placeholder-current" placeholder="Search">
+        <input id="search" type="text" onchange="searching(this)" class="closed-hide md:block px-[2.5rem] duration-300 w-full outline-none bg-transparent h-[2.5rem] text-[13px] placeholder-current" placeholder="Search">
         <label for="search" onclick="openSidebar()" class="cursor-pointer h-[2.5rem] w-[2.5rem] absolute top-0 left-0 flex items-center justify-center">
           <div class="duration-300 icon">
             <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,6 +81,19 @@
           </div>
         </div>
       </div>
+
+      <div id="searchResult" onclick="playSearched()">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <img src="" style="height: 50px; width: 50px" id="searchedImage"/>
+            <span id="searchedTitle"></span>
+            -
+            <span id="searchedArtist"></span>
+          </li>
+        </ul>
+      </div>
+
+
       <div class="sidebar-menu pb-[1.5rem]">
         <nav class="mt-[1.5rem] text-sm text-alt2">
           <h6 class="closed-hide uppercase text-[11px] text-alt tracking-wider ml-[0.5rem]">Menu</h6>

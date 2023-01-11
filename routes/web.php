@@ -64,3 +64,5 @@ Route::get('/explorer' , [user::class , "alls"])->name("explorer");
 Route::get('/albums' , [user::class , "albums"])->name("albumsx");
 Route::get('/details/album/{id}' , [user::class , "Detailalbum"])->name("Detailalbum");
 Route::get('/details/playlist/{id}' , [user::class , "Detailplaylist"])->name("Detailplaylist");
+
+Route::get('/search/{tukhoa}', [user::class , "search"])->name("searching");

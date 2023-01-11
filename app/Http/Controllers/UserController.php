@@ -57,4 +57,10 @@ class UserController extends Controller
         DB::table('baihat')->where("idBaiHat" , $id)->update($array);
         return redirect()->back();
     }
+
+    public function search($tukhoa) {
+        $entity = DB::table('baihat')->where("TenBaiHat" , 'like', '%'.$tukhoa.'%')->first();
+        $entity = [$entity];
+        echo json_encode($entity , JSON_UNESCAPED_UNICODE );
+    }
 }
